@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { auth, authorize } = require('../middleware/auth');
+const { apiLimiter, createLimiter } = require('../middleware/rateLimiter');
 const {
   createProvider,
   getProvider,
@@ -9,10 +10,10 @@ const {
   getMyProviderProfile
 } = require('../controllers/providerController');
 
-router.post('/', auth, createProvider);
-router.get('/search', searchProviders);
-router.get('/me', auth, authorize('provider', 'admin'), getMyProviderProfile);
-router.get('/:id', getProvider);
-router.put('/', auth, authorize('provider', 'admin'), updateProvider);
+router.post('/', createLimiter, auth, createProvider);
+router.get('/search', apiLimiter, searchProviders);
+router.get('/me', apiLimiter, auth, authorize('provider', 'admin'), getMyProviderProfile);
+router.get('/:id', apiLimiter, getProvider);
+router.put('/', apiLimiter, auth, authorize('provider', 'admin'), updateProvider);
 
 module.exports = router;
