@@ -19,7 +19,7 @@
     scope: '/pwa/',
     subscribeEndpoint: '/api/push/subscribe',
     unsubscribeEndpoint: '/api/push/unsubscribe',
-    vapidPublicKey: '<VAPID_PUBLIC_KEY_PLACEHOLDER>' // reemplazar en runtime o build
+    vapidPublicKey: 'BHB1xHLc7TinEFzRmV1YJEShBc8Tw9Idjerr7DDNxici3GIm-2OmxdpULg5xCc7kleg93Jcr2dLvd0rEXTBf6a0' // reemplazar en runtime o build
   };
 
   function registerServiceWorker(path, scope) {
